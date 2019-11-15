@@ -112,6 +112,23 @@ public class byteExtend {
     }
 
     /**
+     *  获取指定长度的数据
+     * @param source 数据来源
+     * @param start 起始位置
+     * @param len 要获取数据的长度
+     * @return 返回新的数据，起始位或长度超限返回null
+     */
+    public static byte[] getBytes(byte[] source,int start,int len){
+        if(source.length<start||source.length<=start+len)
+            return null;
+        byte[] tmp = new byte[len];
+        for(int i =0;i<len;i++){
+            tmp[i] = source[start+i];
+        }
+        return tmp;
+    }
+
+    /**
      * CRC-16 (Modbus)
      * CRC16_MODBUS：多项式x16+x15+x2+1（0x8005），初始值0xFFFF，低位在前，高位在后，结果与0x0000异或
      * 0xA001是0x8005按位颠倒后的结果

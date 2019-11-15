@@ -21,10 +21,13 @@ public class ExampleUnitTest {
 
     @Test
     public void testCrc() {
-        String b = "0A10000000010200AA";
+        String b = "3BB3000014A810010001010000000000000000000000000000";
 
-        System.out.println("551F");
+        System.out.println("25");
         Dbytes db = new Dbytes(b);
-        System.out.println( db.addWithBytes(db.getDataWithCRC(CRCType.CRC16L)).getDataToString());
+        System.out.println(db.getCRCByString(CRCType.XOR));
+        db.addCRC(CRCType.XOR);
+
+        System.out.println(db.getDataToString());
     }
 }
