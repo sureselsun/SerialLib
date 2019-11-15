@@ -174,6 +174,11 @@ public class Dbytes extends byteExtend {
         }
     }
 
+    /**
+     * 在自身数据未添加一个CRC校验码
+     * @param type CRC校验类型
+     * @return  返回添加后的自身
+     */
     public Dbytes addCRC(CRCType type){
         return this.addWithBytes(getCRC(this.getData(),type));
     }
