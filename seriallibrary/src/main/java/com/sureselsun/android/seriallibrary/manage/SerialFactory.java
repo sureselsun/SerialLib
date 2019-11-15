@@ -1,11 +1,6 @@
 package com.sureselsun.android.seriallibrary.manage;
 
-import com.sureselsun.android.seriallibrary.dbase.Dbytes;
-
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.ServiceConfigurationError;
 
 /**
  * 串口生成工厂
@@ -53,8 +48,12 @@ public class SerialFactory {
      */
     public SerialManage newSerialPort(String key,String serialPath,int baudrate){
         SerialManage sm = new SerialManage(serialPath,baudrate,0,key);
-        SerialList.put(key,sm);
-        return SerialList.get(key);
+        if(!sm.isOpen())
+            return null;
+        else {
+            SerialList.put(key, sm);
+            return sm;
+        }
     }
 
     /**

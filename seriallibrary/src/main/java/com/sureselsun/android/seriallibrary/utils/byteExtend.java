@@ -1,10 +1,15 @@
 package com.sureselsun.android.seriallibrary.utils;
 
+import android.nfc.Tag;
+import android.util.Log;
+
 /**
  * 字节处理，转换工能类
  * 创建于 2019/11/13 by Thor
  */
 public class byteExtend {
+
+    private final String TAG = "byteExtend";
 
     /**
      * 将十六进制String转为字节数组
@@ -90,6 +95,23 @@ public class byteExtend {
     }
 
     /**
+     * 对比数据头是否一样
+     * @param sData 源数据
+     * @param dData 要对比的目标数据
+     * @param headLen 要对比的数据头长度
+     * @return  数据一样返回ture,不一样返回false
+     */
+    public static boolean checkBytesHeader(byte[] sData,byte[] dData,int headLen){
+        if(sData.length<headLen||dData.length<headLen)
+            return false;
+        for(int i=0;i<headLen;i++){
+            if(sData[i]!=dData[i])
+                return false;
+        }
+        return true;
+    }
+
+    /**
      * CRC-16 (Modbus)
      * CRC16_MODBUS：多项式x16+x15+x2+1（0x8005），初始值0xFFFF，低位在前，高位在后，结果与0x0000异或
      * 0xA001是0x8005按位颠倒后的结果
@@ -161,5 +183,4 @@ public class byteExtend {
         tmp_b[0] = by;
         return tmp_b;
     }
-
 }

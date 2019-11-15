@@ -103,7 +103,28 @@ public class Dbytes extends byteExtend {
             b[i] = b2;
             i++;
         }
-
         this.sbytes = b.clone();
+    }
+
+    /**
+     * 对比数据包头是否一样
+     * @param data 要对比的数据包
+     * @param headLen 数据包头长度
+     * @return 一样返回true  不一样返回false
+     */
+    public boolean headerCompareTo(byte[] data,int headLen){
+        return byteExtend.checkBytesHeader(getData(),data,headLen);
+    }
+
+    /**
+     * 对比数据包头是否一样
+     * @param data 要对比的数据包
+     * @param headLen 数据包头长度
+     * @return 一样返回true  不一样返回false
+     */
+    public boolean headerCompareTo(String data,int headLen){
+        if(!byteExtend.checkHexStr(data))
+            return false;
+        return byteExtend.checkBytesHeader(getData(),byteExtend.hexStrToBytes(data),headLen);
     }
 }

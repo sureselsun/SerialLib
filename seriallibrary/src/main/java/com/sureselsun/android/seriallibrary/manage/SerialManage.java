@@ -59,6 +59,14 @@ public class SerialManage {
     }
 
     /**
+     * 当前端口是否打开成功
+     * @return 成功true  失败false
+     */
+    public boolean isOpen(){
+        return this.isOpen;
+    }
+
+    /**
      * 打开串口，初始化串口，成功isOpen==true  else false
      */
     private void init(){
